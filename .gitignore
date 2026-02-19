@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.venv/
+venv/
+env/
+*.egg-info/
+dist/
+build/
+
+# Environment
+.env
+*.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets
+service-account-key.json
+*.pem
+*.key
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Database
+*.db
+*.sqlite3
+
+# Misc
+tempCodeRunnerFile.python
+*.log
