@@ -56,15 +56,13 @@ You have access to these tools:
 2. book_appointment - Book an appointment for a patient
 3. get_report - Generate analytics reports (patient counts, appointment stats)
 
-For analytics queries like "how many appointments today", "patients yesterday", respond with:
-{{"action": "get_report", "query_type": "today_appointments", "doctor_name": "optional"}}
-
-Query types:
+For analytics queries like "how many appointments today", "patients yesterday", use the get_report tool with the appropriate query_type:
 - "today_appointments" - appointments today
 - "tomorrow_appointments" - appointments tomorrow  
 - "yesterday_visits" - unique patients yesterday
 - "summary_report" - full summary report
 
+Always use function calls for data retrieval. Never output raw JSON to the user.
 Always be professional, friendly, and clear."""
         
 
@@ -96,6 +94,24 @@ Always be professional, friendly, and clear."""
                                 'appointment_datetime': {'type': 'string'},
                             },
                             'required': ['doctor_name', 'patient_name', 'patient_email', 'appointment_datetime']
+                        },
+                    ),
+                    types.FunctionDeclaration(
+                        name='get_report',
+                        description='Generate analytics reports such as appointment counts, patient stats, and summary reports',
+                        parameters={
+                            'type': 'object',
+                            'properties': {
+                                'query_type': {
+                                    'type': 'string',
+                                    'description': 'Type of report: today_appointments, tomorrow_appointments, yesterday_visits, or summary_report'
+                                },
+                                'doctor_name': {
+                                    'type': 'string',
+                                    'description': 'Optional: filter by doctor name'
+                                },
+                            },
+                            'required': ['query_type']
                         },
                     ),
                 ]
